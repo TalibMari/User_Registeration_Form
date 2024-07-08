@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="css/bootstrap.css">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Start WOWSlider.com HEAD section --> <!-- add to the <head> of your page -->
+	<link rel="stylesheet" type="text/css" href="engine1/style.css" />
+	<script type="text/javascript" src="engine1/jquery.js"></script>
+	<!-- End WOWSlider.com HEAD section -->
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">
+            <img src="images/Daraz-Logo.png" class="img-fluid" alt="" style="width: 100px;">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="about.html">About</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Dropdown
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown" id="CategoryDropDown">
+                 
+                </ul>
+              </li>
+              <li class="nav-item">
+                <a data-bs-toggle="modal" data-bs-target="#Login" class="nav-link " href="#" tabindex="-1" aria-disabled="true">Login</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+
+
+      <!-- Category Wise Data Start -->
+
+
+      <div class="container-fluid">
+        <h1 class="text-danger mt-3">New Product</h1>
+          <div class="row" id="categoryWiseData">
+              
+  
+     
+          </div>
+      </div>
+
+
+      <!-- Category Wise Data End -->
+
+
+
+
+
+
+
+
+
+
+
+      <script>
+        var url = location.href;
+        var obj = new URL(url)// Object
+        var name = obj.searchParams.get('name')
+
+        var product = [
+            [1,"Women Causal Dress","Best Quality",4000,"Images/product-01.jpg","Women"],
+            [2,"Product2","Best Quality",4000,"Images/product-02.jpg","Women"],
+            [3,"Product3","Best Quality",4000,"Images/product-03.jpg","Men"],
+            [4,"Product4","Best Quality",4000,"Images/product-06.jpg","Watch"]
+        ]
+
+        
+        var html = ""
+        for (const iterator of product) {
+  
+            if(iterator[5] == name){
+            html += `
+                    <div class="col-xs-12 col-sm-6 col-md-4 col-lg-4 col-xl-3 mt-3 d-flex justify-content-center">
+                        <div class="card" style="width: 18rem;">
+                            <img src="${iterator[4]}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                            <h5 class="card-title">${iterator[1]}</h5>
+                            <p class="card-text">${iterator[2]}</p>
+                            <a href="detail.html?produt_id=${iterator[0]}&name=${iterator[1]}&price=${iterator[3]}&img=${iterator[4]}" class="btn btn-primary">See Detail</a>
+                            </div>
+                        </div>
+                    </div>
+            `
+        }
+}
+
+
+document.getElementById("categoryWiseData").innerHTML = html
+
+      </script>
+
+      <script src="app.js"></script>
+      <script src="js/bootstrap.js"></script>
+      <script type="text/javascript" src="engine1/wowslider.js"></script>
+      <script type="text/javascript" src="engine1/script.js"></script>
+  </body>
+  </html>

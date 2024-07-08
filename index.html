@@ -1,0 +1,126 @@
+<!-- 
+Topic For Research
+
+
+json.parse() -> String -> Object 
+json.stringfy -> object -> string
+push() Usage Of Push Method
+
+-->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    
+    <script>
+        $(document).ready(function(){
+           $("#login").click(function(){
+
+            var email = $("#email").val()
+            var password = $("#password").val()
+
+            var errors = ""
+
+            if(email == ""){
+                $("#email").removeClass("is-valid")
+                $("#email").addClass("is-invalid")
+                errors += "email";
+            }else{
+        
+                if(email.match(/^[A-z0-9_]+[@][a-z]{5}[.][a-z]{3}$/)){
+                    $("#email").removeClass("is-invalid")
+                    $("#email").addClass("is-valid")
+                    $("#e_msg").html("email is Valid")
+                    $("#e_msg").css("color","green")
+                }else{
+                    $("#email").removeClass("is-valid")
+                    $("#email").addClass("is-invalid")
+                    errors += "email";
+                    $("#e_msg").html("Email Pattern Not Match")
+                    $("#e_msg").css("color","red")
+                }  
+            }
+
+
+            if(password == ""){
+                $("#password").removeClass("is-valid")
+                $("#password").addClass("is-invalid")
+                errors += "password";
+            }else{
+                if(password.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[\W]).{8,16}$/)){
+                    $("#password").removeClass("is-invalid")
+                    $("#password").addClass("is-valid")
+                    $("#p_msg").html("Password is Valid")
+                    $("#p_msg").css("color","green")
+                }else{
+                    $("#password").removeClass("is-valid")
+                    $("#password").addClass("is-invalid")
+                    errors += "password";
+                    $("#p_msg").html("1 Upper 1 Lower 1 Number 1 Special Character Length 8-16 ")
+                    $("#p_msg").css("color","red")
+                } 
+            }
+            
+            
+            if(errors == ""){
+                
+                var oldData = JSON.parse(localStorage.getItem("mydb"))||[]
+                var islogin = ""
+                for(var data of oldData){
+                    // console.log(data)
+                    // console.log(data.email)
+
+                    if(data.email == email && data.password == password){
+                        islogin += "Login Successfully"
+                        break;
+                    }
+                }
+                
+                // Logic Logic Here
+                if(islogin == "Login Successfully"){
+                    location.assign("website/index.html")
+                }else{
+                    alert("Email Or password Not Correct")
+                }
+                
+            }
+
+           })
+
+           
+        })
+    </script>
+
+</head>
+<body>
+
+    
+   <div class="container mt-5">
+    <div class="row">
+        <div class="col-12">
+            <form action="" class="shadow p-2">
+                <h3 class="bg-warning p-2 text-center">LOGIN FORM</h3>
+    
+                <input class="form-control mb-3" type="email" id="email" placeholder="Email">
+                <span id="e_msg"></span>
+                <input class="form-control mb-3" type="password" id="password" placeholder="Password">
+                <p id="p_msg"></p>
+                <button type="button" id="login" class="btn btn-primary">Login</button>
+            </form>
+        </div>
+    </div>
+   </div>
+
+
+   
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+</html>
